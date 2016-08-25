@@ -1,0 +1,13 @@
+*.iml
+.idea
+.metadata
+.recommenders
+target
+bower_components
+node_modules
+node
+*.log
+asciidoctor.css
+README.html
+built
+RemoteSystemsTempFiles

@@ -1,0 +1,68 @@
+---
+# This is a shopping list API.  
+swagger: "2.0"
+info:
+  description: Shopping list management and sharing
+  version: 1.0.0
+  title: ShoppingList
+basePath: /api
+schemes:
+- http
+
+# Tags organize operations into groups for presentation in the Swagger UI.
+# Each tag has an optional description, which the Swagger UI will display in 
+# the tag group header.
+tags:
+- name: ShoppingList
+  description: An individual Shopping List, accessed by its ID
+
+paths:
+
+  # Each Path Item Object describes a resource, containing a set of operations
+  # at a specified path.  The Path Item object can define parameters and 
+  # responses common all of its contained operations.
+  /shoppingList/{id}:
+
+    # Operations are identified by an HTTP method.  
+    get:
+      tags:
+      - ShoppingList
+      description: Retrieves a shopping list having the specified id.
+      operationId: getShoppingList
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of the requested ShoppingList
+        required: true
+        type: string
+      responses:
+        200:
+          description: Successful response, with a representation of the Shopping List.
+          schema:
+            # Reference to a Schema Object described in 'definitions' section
+            $ref: "#/definitions/ShoppingList"
+          examples:
+            # Example message, keyed by media type
+            application/json :
+              {
+                listID : 1234,
+                name : Weekly
+              }
+        404:
+          description: The requested shopping list was not found.
+ 
+# The definitions section contains a set of named Schema Objects.  Each schema
+# object describes a reusable data type, which can be reference by name.
+definitions:
+  ShoppingList:
+    type: object
+    description: An individual Shopping List record.
+    properties:
+      listID:
+        type: string
+      name:
+        type: string
