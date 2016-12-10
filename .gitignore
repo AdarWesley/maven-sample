@@ -1,7 +1,9 @@
 *.iml
+.mvn
 .idea
 .metadata
 .recommenders
+import
 target
 bower_components
 node_modules

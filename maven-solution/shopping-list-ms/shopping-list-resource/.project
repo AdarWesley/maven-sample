@@ -3,6 +3,7 @@
 	<name>shopping-list-resource</name>
 	<comment></comment>
 	<projects>
+		<project>shopping-list-api</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

@@ -10,5 +10,6 @@
   <name>${project.groupId}:${project.artifactId}</name>
   <modules>
   	<module>shopping-list-resource</module>
+  	<module>shopping-list-application</module>
   </modules>
 </project>
