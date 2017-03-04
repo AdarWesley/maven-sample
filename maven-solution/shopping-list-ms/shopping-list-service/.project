@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>shopping-list-resource</name>
+	<name>shopping-list-service</name>
 	<comment></comment>
 	<projects>
-		<project>shopping-list-api</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

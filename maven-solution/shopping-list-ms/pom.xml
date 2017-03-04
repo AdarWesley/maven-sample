@@ -11,5 +11,6 @@
   <modules>
   	<module>shopping-list-resource</module>
   	<module>shopping-list-application</module>
+  	<module>shopping-list-service</module>
   </modules>
 </project>
