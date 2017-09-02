@@ -2,6 +2,7 @@
 .mvn
 .idea
 .metadata
+.settings
 .recommenders
 import
 target

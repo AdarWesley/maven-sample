@@ -12,6 +12,7 @@ import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.swagger.Swagger2Feature;
 import org.awesley.shoppinglist.resources.configuration.ResourcesConfiguration;
+import org.awesley.shoppinglist.service.configuration.ServicesConfiguration;
 //import org.awesley.shoppinglist.resources.implementation.ShoppingListApiImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -24,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
-@SpringBootApplication(scanBasePackageClasses = { ResourcesConfiguration.class })
+@SpringBootApplication(scanBasePackageClasses = { ResourcesConfiguration.class, ServicesConfiguration.class })
 public class CxfServiceSpringBootApplication {
 	
 	@Autowired
