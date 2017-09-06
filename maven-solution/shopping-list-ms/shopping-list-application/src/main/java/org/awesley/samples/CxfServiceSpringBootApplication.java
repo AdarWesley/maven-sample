@@ -11,6 +11,7 @@ import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.swagger.Swagger2Feature;
+import org.awesley.shoppinglist.persistence.configuration.PersistenceConfiguration;
 import org.awesley.shoppinglist.resources.configuration.ResourcesConfiguration;
 import org.awesley.shoppinglist.service.configuration.ServicesConfiguration;
 //import org.awesley.shoppinglist.resources.implementation.ShoppingListApiImpl;
@@ -25,7 +26,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
-@SpringBootApplication(scanBasePackageClasses = { ResourcesConfiguration.class, ServicesConfiguration.class })
+@SpringBootApplication(scanBasePackageClasses = { 
+		ResourcesConfiguration.class, 
+		ServicesConfiguration.class,
+		PersistenceConfiguration.class
+		})
 public class CxfServiceSpringBootApplication {
 	
 	@Autowired
