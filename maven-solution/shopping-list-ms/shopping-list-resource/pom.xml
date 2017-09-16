@@ -3,41 +3,26 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.awesley.maven-sample</groupId>
-		<artifactId>maven-solution</artifactId>
+		<artifactId>shopping-list-ms</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../../</relativePath>
+		<relativePath>../</relativePath>
 	</parent>
 	
 	<artifactId>shopping-list-resource</artifactId>
+	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<api-package>org.awesley.shoppinglist.resources.interfaces</api-package>
-		<model-package>org.awesley.shoppinglist.resources.models</model-package>
-		<spring.boot.version>1.4.4.RELEASE</spring.boot.version>
-		<javax.inject.version>1</javax.inject.version>
-		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
 		<swagger-file.artifactId>shopping-list-api</swagger-file.artifactId>
-		<java.version>1.8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<!-- Import dependency management from Spring Boot -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring.boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
+		<dependency>
+			<groupId>org.awesley.microservice</groupId>
+			<artifactId>microservice-resource-base</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>pom</type>
+		</dependency>
 		<dependency>
 			<groupId>org.awesley.maven-sample</groupId>
 			<artifactId>shopping-list-api</artifactId>
@@ -49,129 +34,5 @@
 			<artifactId>shopping-list-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>${javax.inject.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-extension-providers</artifactId>
-			<version>3.1.7</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>io.swagger</groupId>
-		    <artifactId>swagger-annotations</artifactId>
-		    <version>1.5.12</version>
-		</dependency>
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-jaxrs</artifactId>
-			<version>1.5.12</version>
-		</dependency>		
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				<executions>
-					<execution>
-						<id>swagger-generate-server-code</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<includeProjectDependencies>false</includeProjectDependencies>
-					<includePluginDependencies>true</includePluginDependencies>
-					<executableDependency>
-						<groupId>io.swagger</groupId>
-						<artifactId>swagger-codegen-cli</artifactId>
-					</executableDependency>
-					<mainClass>io.swagger.codegen.SwaggerCodegen</mainClass>
-					<arguments>
-						<argument>generate</argument>
-						<argument>-i</argument>
-						<argument>${project.build.directory}/${swagger-file.artifactId}.yaml</argument>
-						<argument>-l</argument>
-						<argument>jaxrs-cxf</argument>
-						<argument>-o</argument>
-						<argument>${project.build.directory}</argument>
-						<argument>--api-package</argument>
-						<argument>${api-package}</argument>
-						<argument>--model-package</argument>
-						<argument>${model-package}</argument>
-					</arguments>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>io.swagger</groupId>
-						<artifactId>swagger-codegen-cli</artifactId>
-						<version>2.2.2</version>
-						<type>jar</type>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.0.0</version>
-				<executions>
-		          <execution>
-		            <id>add-generated-source</id>
-		            <phase>generate-sources</phase>
-		            <goals>
-		              <goal>add-source</goal>
-		            </goals>
-		            <configuration>
-		              <sources>
-		                <source>${project.build.directory}/src/gen/java/</source>
-		              </sources>
-		            </configuration>
-		          </execution>
-		        </executions>				
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.10</version>
-				<executions>
-					<execution>
-						<id>copy</id>
-						<phase>initialize</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>${project.groupId}</groupId>
-									<artifactId>${swagger-file.artifactId}</artifactId>
-									<version>${project.version}</version>
-									<type>yaml</type>
-									<overWrite>true</overWrite>
-									<outputDirectory>${project.build.directory}</outputDirectory>
-									<destFileName>${swagger-file.artifactId}.yaml</destFileName>
-								</artifactItem>
-							</artifactItems>
-							<!-- other configurations here -->
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 </project>
