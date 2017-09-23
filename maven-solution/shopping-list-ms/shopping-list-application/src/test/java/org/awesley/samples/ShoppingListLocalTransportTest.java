@@ -12,14 +12,11 @@ import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.apache.cxf.jaxrs.lifecycle.ResourceProvider;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
-import org.apache.cxf.jaxrs.spring.SpringResourceFactory;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.transport.local.LocalConduit;
 import org.awesley.shoppinglist.persistence.implementation.jpa.entities.JpaShoppingList;
 import org.awesley.shoppinglist.persistence.implementation.jpa.repositories.ShoppingListJpaRepository;
-import org.awesley.shoppinglist.resources.implementation.ShoppingListApiImpl;
 import org.awesley.shoppinglist.resources.interfaces.ShoppingListApi;
 import org.awesley.shoppinglist.resources.models.ShoppingList;
 import org.junit.AfterClass;
@@ -39,7 +36,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CxfServiceSpringBootApplication.class) //, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ShoppingListLocalTransportTests {
+public class ShoppingListLocalTransportTest {
 
 	private final static String ENDPOINT_ADDRESS = "local://services";
 	private static Server server;
@@ -48,7 +45,7 @@ public class ShoppingListLocalTransportTests {
 	
 	@Autowired
 	private void setShoppingListApi(ShoppingListApi shoppingListApi){
-		ShoppingListLocalTransportTests.shoppingListApi = shoppingListApi;
+		ShoppingListLocalTransportTest.shoppingListApi = shoppingListApi;
 	}
 	
 	private static ShoppingListApi shoppingListApi;

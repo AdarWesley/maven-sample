@@ -4,10 +4,6 @@ import static org.junit.Assert.*;
 
 import javax.sql.DataSource;
 
-import org.awesley.shoppinglist.persistence.implementation.jpa.entities.JpaShoppingList;
-import org.awesley.shoppinglist.persistence.implementation.jpa.repositories.ShoppingListJpaRepository;
-import org.awesley.shoppinglist.resources.models.ShoppingList;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,29 +19,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CxfServiceSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ShoppingListTests {
+public class HelloServiceTest {
 
 	@LocalServerPort
 	private int port;
 	
 	@Autowired
 	private TestRestTemplate testRestTemplate;
-
-	@Autowired
-	private ShoppingListJpaRepository shoppingListJpaRepository;
 	
-	@Before
-	public void initDatabase() {
-		JpaShoppingList shoppingList = new JpaShoppingList();
-		shoppingList.setListID("1");
-		shoppingList.setName("My Test List");
-		
-		shoppingListJpaRepository.save(shoppingList);
-	}
-
 	@Test
-	public void canLoadShoppingList() {
-		ResponseEntity<ShoppingList> entity = testRestTemplate.getForEntity("http://localhost:" + this.port + "/services/shoppingList/1", ShoppingList.class);
+	public void callHelloService() {
+		ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + this.port + "/services/sayHello/adar", String.class);
+		
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
 
@@ -61,6 +46,7 @@ public class ShoppingListTests {
 			dataSource.setPassword("");
 			dataSource.setDriverClassName("org.h2.Driver");
 			return dataSource;
-		}	
-	}	
+		}
+		
+	}
 }

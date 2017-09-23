@@ -12,15 +12,37 @@
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<properties>
+		<javax.inject.version>1</javax.inject.version>
 		<!-- spring.data.version>1.11.6.RELEASE</spring.data.version -->
 	</properties>
 
+<!-- 	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.awesley.microservice</groupId>
+				<artifactId>microservice-service-base</artifactId>
+				<version>1.0</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement> -->
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.awesley.microservice</groupId>
 			<artifactId>microservice-service-base</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0</version>
 			<type>pom</type>
 		</dependency>
+<!-- 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>${javax.inject.version}</version>
+		</dependency>-->
 	</dependencies>
 </project>
