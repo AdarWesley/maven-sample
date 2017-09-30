@@ -2,27 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.awesley.maven-sample</groupId>
-		<artifactId>shopping-list-ms</artifactId>
+		<groupId>org.awesley.microservices</groupId>
+		<artifactId>microservice1-ms</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	
-	<artifactId>shopping-list-persistence</artifactId>
+	<artifactId>microservice1-persistence</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
-	<!-- <dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.awesley.microservice</groupId>
-				<artifactId>microservice-persistence-base</artifactId>
-				<version>1.0</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement> -->
 	<dependencies>
 		<dependency>
 			<groupId>org.awesley.microservice</groupId>
@@ -31,21 +20,9 @@
 			<type>pom</type>
 		</dependency>
 		<dependency>
-			<groupId>org.awesley.maven-sample</groupId>
-			<artifactId>shopping-list-service</artifactId>
+			<groupId>org.awesley.microservices</groupId>
+			<artifactId>microservice1-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- <dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-		</dependency> -->
 	</dependencies>
 </project>

@@ -1,12 +1,12 @@
-package org.awesley.samples;
+package org.awesley.microservice1.application;
 
 import static org.junit.Assert.*;
 
 import javax.sql.DataSource;
 
-import org.awesley.shoppinglist.persistence.implementation.jpa.entities.JpaShoppingList;
-import org.awesley.shoppinglist.persistence.implementation.jpa.repositories.ShoppingListJpaRepository;
-import org.awesley.shoppinglist.resources.models.ShoppingList;
+import org.awesley.microservice1.persistence.implementation.jpa.entities.JpaEntity1;
+import org.awesley.microservice1.persistence.implementation.jpa.repositories.Entity1JpaRepository;
+import org.awesley.microservice1.resources.models.Entity1;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CxfServiceSpringBootApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ShoppingListTest {
+public class Microservice1Test {
 
 	@LocalServerPort
 	private int port;
@@ -32,20 +32,20 @@ public class ShoppingListTest {
 	private TestRestTemplate testRestTemplate;
 
 	@Autowired
-	private ShoppingListJpaRepository shoppingListJpaRepository;
+	private Entity1JpaRepository entity1JpaRepository;
 	
 	@Before
 	public void initDatabase() {
-		JpaShoppingList shoppingList = new JpaShoppingList();
-		shoppingList.setListID("1");
-		shoppingList.setName("My Test List");
+		JpaEntity1 entity1 = new JpaEntity1();
+		entity1.setID("1");
+		entity1.setName("My Test List");
 		
-		shoppingListJpaRepository.save(shoppingList);
+		entity1JpaRepository.save(entity1);
 	}
 
 	@Test
-	public void canLoadShoppingList() {
-		ResponseEntity<ShoppingList> entity = testRestTemplate.getForEntity("http://localhost:" + this.port + "/services/shoppingList/1", ShoppingList.class);
+	public void canLoadEntity1() {
+		ResponseEntity<Entity1> entity = testRestTemplate.getForEntity("http://localhost:" + this.port + "/services/entity1/1", Entity1.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
 

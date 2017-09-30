@@ -15,7 +15,7 @@
 
 	<properties>
 		<docker.image.prefix>awesley</docker.image.prefix>
-		<application.main.class>org.awesley.samples.CxfServiceSpringBootApplication</application.main.class>
+		<application.main.class>org.awesley.microservice1.application.CxfServiceSpringBootApplication</application.main.class>
 		<application.docker.directory>src/main/docker</application.docker.directory>
 		<spring.boot.version>1.4.4.RELEASE</spring.boot.version>
 		<javax.inject.version>1</javax.inject.version>

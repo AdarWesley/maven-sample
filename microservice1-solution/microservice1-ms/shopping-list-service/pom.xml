@@ -2,32 +2,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.awesley.maven-sample</groupId>
-		<artifactId>shopping-list-ms</artifactId>
+		<groupId>org.awesley.microservices</groupId>
+		<artifactId>microservice1-ms</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>shopping-list-service</artifactId>
+	<artifactId>microservice1-service</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<properties>
 		<javax.inject.version>1</javax.inject.version>
-		<!-- spring.data.version>1.11.6.RELEASE</spring.data.version -->
 	</properties>
 
-<!-- 	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.awesley.microservice</groupId>
-				<artifactId>microservice-service-base</artifactId>
-				<version>1.0</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement> -->
-	
 	<dependencies>
 		<dependency>
 			<groupId>org.awesley.microservice</groupId>
@@ -35,14 +22,5 @@
 			<version>1.0</version>
 			<type>pom</type>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>${javax.inject.version}</version>
-		</dependency>-->
 	</dependencies>
 </project>

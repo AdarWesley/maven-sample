@@ -1,4 +1,4 @@
-package org.awesley.samples;
+package org.awesley.microservice1.application;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -15,10 +15,10 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 import org.apache.cxf.message.Message;
 import org.apache.cxf.transport.local.LocalConduit;
-import org.awesley.shoppinglist.persistence.implementation.jpa.entities.JpaShoppingList;
-import org.awesley.shoppinglist.persistence.implementation.jpa.repositories.ShoppingListJpaRepository;
-import org.awesley.shoppinglist.resources.interfaces.ShoppingListApi;
-import org.awesley.shoppinglist.resources.models.ShoppingList;
+import org.awesley.microservice1.persistence.implementation.jpa.entities.JpaEntity1;
+import org.awesley.microservice1.persistence.implementation.jpa.repositories.Entity1JpaRepository;
+import org.awesley.microservice1.resources.interfaces.Microservice1Api;
+import org.awesley.microservice1.resources.models.Entity1;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -36,7 +36,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CxfServiceSpringBootApplication.class) //, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ShoppingListLocalTransportTest {
+public class Microservice1LocalTransportTest {
 
 	private final static String ENDPOINT_ADDRESS = "local://services";
 	private static Server server;
@@ -44,14 +44,14 @@ public class ShoppingListLocalTransportTest {
 	private static List<Object> providers;
 	
 	@Autowired
-	private void setShoppingListApi(ShoppingListApi shoppingListApi){
-		ShoppingListLocalTransportTest.shoppingListApi = shoppingListApi;
+	private void setMicroservice1Api(Microservice1Api Microservice1Api){
+		Microservice1LocalTransportTest.Microservice1Api = Microservice1Api;
 	}
 	
-	private static ShoppingListApi shoppingListApi;
+	private static Microservice1Api Microservice1Api;
 	
 	@Autowired
-	private ShoppingListJpaRepository shoppingListJpaRepository;
+	private Entity1JpaRepository Entity1JpaRepository;
 	
 	@BeforeClass
 	public static void initialize() throws Exception {
@@ -61,11 +61,11 @@ public class ShoppingListLocalTransportTest {
 
 	@Before
 	public void initDatabase() {
-		JpaShoppingList shoppingList = new JpaShoppingList();
-		shoppingList.setListID("1");
-		shoppingList.setName("My Test List");
+		JpaEntity1 entity1 = new JpaEntity1();
+		entity1.setID("1");
+		entity1.setName("My Test Entity1");
 		
-		shoppingListJpaRepository.save(shoppingList);
+		Entity1JpaRepository.save(entity1);
 	}
 
 	private static void initProviders() {
@@ -77,15 +77,15 @@ public class ShoppingListLocalTransportTest {
 
 	private static void startServer() throws Exception {
 	     JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
-	     sf.setResourceClasses(ShoppingListApi.class);
+	     sf.setResourceClasses(Microservice1Api.class);
 	         
 	     sf.setProviders(providers);
 	         
-	     sf.setResourceProvider(ShoppingListApi.class,
+	     sf.setResourceProvider(Microservice1Api.class,
 	                            new SingletonResourceProvider(null){
 	    	@Override
 	    	public Object getInstance(Message m) {
-	    		return shoppingListApi;
+	    		return Microservice1Api;
 	    	}
 	     });
 	     
@@ -102,14 +102,14 @@ public class ShoppingListLocalTransportTest {
 	}
 
 	@Test
-	public void canGetShoppingList() {
-		ShoppingListApi client = JAXRSClientFactory.create(ENDPOINT_ADDRESS, ShoppingListApi.class, providers);
+	public void canGetEntity1() {
+		Microservice1Api client = JAXRSClientFactory.create(ENDPOINT_ADDRESS, Microservice1Api.class, providers);
 		WebClient.getConfig(client).getRequestContext().put(LocalConduit.DIRECT_DISPATCH, Boolean.TRUE);
 		
-		ShoppingList shoppingList = client.getShoppingList("1");
+		Entity1 entity1 = client.getEntity1("1");
 		
-		assertNotNull(shoppingList);
-		assertEquals("1", shoppingList.getListID());	
+		assertNotNull(entity1);
+		assertEquals("1", entity1.getID());	
 	}
 	
 	@org.springframework.boot.test.context.TestConfiguration

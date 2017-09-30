@@ -2,35 +2,24 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.awesley.maven-sample</groupId>
-		<artifactId>shopping-list-ms</artifactId>
+		<groupId>org.awesley.microservices</groupId>
+		<artifactId>microservice1-ms</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 	
-	<artifactId>shopping-list-resource</artifactId>
+	<artifactId>microservice1-resource</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<properties>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-		<base.package>org.awesley.shoppinglist</base.package>
+		<base.package>org.awesley.microservice1</base.package>
 		<api-package>${base.package}.resources.interfaces</api-package>
 		<model-package>${base.package}.resources.models</model-package>
-		<swagger-file.artifactId>shopping-list-api</swagger-file.artifactId>
+		<swagger-file.artifactId>microservice1-api</swagger-file.artifactId>
 	</properties>
 
-<!-- 	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.awesley.microservice</groupId>
-				<artifactId>microservice-resource-base</artifactId>
-				<version>1.0</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement> -->
 	<dependencies>
 		<dependency>
 			<groupId>org.awesley.microservice</groupId>
@@ -39,36 +28,16 @@
 			<type>pom</type>
 		</dependency>
 		<dependency>
-			<groupId>org.awesley.maven-sample</groupId>
-			<artifactId>shopping-list-api</artifactId>
+			<groupId>org.awesley.microservices</groupId>
+			<artifactId>microservice1-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<type>yaml</type>
 		</dependency>
 		<dependency>
-			<groupId>org.awesley.maven-sample</groupId>
-			<artifactId>shopping-list-service</artifactId>
+			<groupId>org.awesley.microservices</groupId>
+			<artifactId>microservice1-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-rs-extension-providers</artifactId>
-			<version>3.1.7</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet-api.version}</version>
-		</dependency>
-		<dependency>
-		    <groupId>io.swagger</groupId>
-		    <artifactId>swagger-annotations</artifactId>
-		    <version>1.5.12</version>
-		</dependency>
-		<dependency>
-			<groupId>io.swagger</groupId>
-			<artifactId>swagger-jaxrs</artifactId>
-			<version>1.5.12</version>
-		</dependency> -->		
 	</dependencies>
 	<build>
 		<plugins>
