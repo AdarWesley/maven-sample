@@ -17,7 +17,7 @@ import org.apache.cxf.message.Message;
 import org.apache.cxf.transport.local.LocalConduit;
 import org.awesley.microservice1.persistence.implementation.jpa.entities.JpaEntity1;
 import org.awesley.microservice1.persistence.implementation.jpa.repositories.Entity1JpaRepository;
-import org.awesley.microservice1.resources.interfaces.Microservice1Api;
+import org.awesley.microservice1.resources.interfaces.Entity1Api;
 import org.awesley.microservice1.resources.models.Entity1;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,11 +44,11 @@ public class Microservice1LocalTransportTest {
 	private static List<Object> providers;
 	
 	@Autowired
-	private void setMicroservice1Api(Microservice1Api Microservice1Api){
-		Microservice1LocalTransportTest.Microservice1Api = Microservice1Api;
+	private void setMicroservice1Api(Entity1Api Microservice1Api){
+		Microservice1LocalTransportTest.Entity1Api = Microservice1Api;
 	}
 	
-	private static Microservice1Api Microservice1Api;
+	private static Entity1Api Entity1Api;
 	
 	@Autowired
 	private Entity1JpaRepository Entity1JpaRepository;
@@ -77,15 +77,15 @@ public class Microservice1LocalTransportTest {
 
 	private static void startServer() throws Exception {
 	     JAXRSServerFactoryBean sf = new JAXRSServerFactoryBean();
-	     sf.setResourceClasses(Microservice1Api.class);
+	     sf.setResourceClasses(Entity1Api.class);
 	         
 	     sf.setProviders(providers);
 	         
-	     sf.setResourceProvider(Microservice1Api.class,
+	     sf.setResourceProvider(Entity1Api.class,
 	                            new SingletonResourceProvider(null){
 	    	@Override
 	    	public Object getInstance(Message m) {
-	    		return Microservice1Api;
+	    		return Entity1Api;
 	    	}
 	     });
 	     
@@ -103,13 +103,13 @@ public class Microservice1LocalTransportTest {
 
 	@Test
 	public void canGetEntity1() {
-		Microservice1Api client = JAXRSClientFactory.create(ENDPOINT_ADDRESS, Microservice1Api.class, providers);
+		Entity1Api client = JAXRSClientFactory.create(ENDPOINT_ADDRESS, Entity1Api.class, providers);
 		WebClient.getConfig(client).getRequestContext().put(LocalConduit.DIRECT_DISPATCH, Boolean.TRUE);
 		
 		Entity1 entity1 = client.getEntity1("1");
 		
 		assertNotNull(entity1);
-		assertEquals("1", entity1.getID());	
+		assertEquals("1", entity1.getId());	
 	}
 	
 	@org.springframework.boot.test.context.TestConfiguration

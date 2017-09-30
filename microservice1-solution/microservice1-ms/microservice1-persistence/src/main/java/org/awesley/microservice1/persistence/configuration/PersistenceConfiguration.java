@@ -1,7 +1,7 @@
 package org.awesley.microservice1.persistence.configuration;
 
 import org.awesley.microservice1.persistence.implementation.Entity1RepositoryImplementation;
-import org.awesley.microservice1.service.interfaces.IEntityRepository;
+import org.awesley.microservice1.service.interfaces.IEntity1Repository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
