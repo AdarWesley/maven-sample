@@ -2,14 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.awesley.maven-sample</groupId>
-	<artifactId>maven-solution</artifactId>
+	<groupId>org.awesley.microservices</groupId>
+	<artifactId>microservice1-solution</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<properties>
-		<base.package>org.awesley.shoppinglist</base.package>
+		<base.package>org.awesley.microservice1</base.package>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -17,7 +17,7 @@
 	</properties>
 
 	<modules>
-		<module>shopping-list-api</module>
-		<module>shopping-list-ms</module>
+		<module>microservice1-api</module>
+		<module>microservice1-ms</module>
 	</modules>
 </project>
