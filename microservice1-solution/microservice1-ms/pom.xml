@@ -2,20 +2,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.awesley.maven-sample</groupId>
-		<artifactId>maven-solution</artifactId>
+		<groupId>org.awesley.microservices</groupId>
+		<artifactId>microservice1-solution</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
 
-	<artifactId>shopping-list-ms</artifactId>
+	<artifactId>microservice1-ms</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 
 	<modules>
-		<module>shopping-list-resource</module>
-		<module>shopping-list-application</module>
-		<module>shopping-list-service</module>
-		<module>shopping-list-persistence</module>
+		<module>microservice1-resource</module>
+		<module>microservice1-application</module>
+		<module>microservice1-service</module>
+		<module>microservice1-persistence</module>
 	</modules>
 </project>

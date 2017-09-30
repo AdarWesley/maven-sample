@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-oraclejdk8:slim
 VOLUME /tmp
-ADD shopping-list-application.jar app.jar
+ADD microservice1-application.jar app.jar
 EXPOSE 8080
 EXPOSE 8000
 RUN sh -c 'touch /app.jar'
