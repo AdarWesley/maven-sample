@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.awesley.microservice</groupId>
+		<version>1.0</version>
+		<artifactId>microservice-api-base</artifactId>
+		<relativePath></relativePath>
+	</parent>
+	
+	<groupId>org.awesley.digital</groupId>
+	<artifactId>__rootArtifactId__-api</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>${project.groupId}:${project.artifactId}</name>
+
+	<properties>
+		<file>src\main\resources\swagger\__rootArtifactId__.yaml</file>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

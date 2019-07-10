@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.awesley.digital</groupId>
+	<artifactId>__rootArtifactId__-solution</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>${project.groupId}:${project.artifactId}</name>
+
+	<modules>
+		<module>__rootArtifactId__-api</module>
+		<module>__rootArtifactId__-ms</module>
+		<module>__rootArtifactId__-ck</module>
+	</modules>
+</project>
