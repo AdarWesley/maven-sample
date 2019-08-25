@@ -19,7 +19,7 @@
 		<base.package>${project.groupId}.__rootArtifactId__</base.package>
 		<swagger-file.groupId>${project.groupId}</swagger-file.groupId>
 		<swagger-file.artifactId>__rootArtifactId__-api</swagger-file.artifactId>
-		<swagger-file.version>0.0.1-SNAPSHOT</swagger-file.version>
+		<swagger-file.version>${project.version}</swagger-file.version>
 	</properties>
 	
 	<build>

@@ -1,4 +1,4 @@
-FROM openjdk:13-alpine
+FROM openjdk:8-alpine
 VOLUME /tmp
 COPY target/__rootArtifactId__-application.jar /app.jar
 EXPOSE 8080

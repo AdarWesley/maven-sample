@@ -19,21 +19,21 @@
 		<base.package>${project.groupId}.__rootArtifactId__</base.package>
 		<swagger-file.groupId>${project.groupId}</swagger-file.groupId>
 		<swagger-file.artifactId>__rootArtifactId__-api</swagger-file.artifactId>
-		<swagger-file.version>0.0.1-SNAPSHOT</swagger-file.version>
+		<swagger-file.version>${version}</swagger-file.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>__rootArtifactId__-api</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version}</version>
 			<type>yaml</type>
 			<scope>provided</scope><!-- Should not be carried with this jar as a transitive dependency -->
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>__rootArtifactId__-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${version}</version>
 		</dependency>
 	</dependencies>
 	<build>

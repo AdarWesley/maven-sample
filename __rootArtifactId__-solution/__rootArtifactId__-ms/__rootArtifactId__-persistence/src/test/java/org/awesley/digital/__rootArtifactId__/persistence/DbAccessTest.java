@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 		,PersistenceConfiguration.class	
 	},
 	properties = {
-		"spring.datasource.url=jdbc:mysql://localhost:3306/dockerimagename?useSSL=false&allowPublicKeyRetrieval=true"
+		"spring.datasource.url=jdbc:mysql://localhost:3306/databasename?useSSL=false&allowPublicKeyRetrieval=true"
 		,"spring.datasource.username=root"
 		,"spring.datasource.password=adarRada"			
 		,"spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver"
