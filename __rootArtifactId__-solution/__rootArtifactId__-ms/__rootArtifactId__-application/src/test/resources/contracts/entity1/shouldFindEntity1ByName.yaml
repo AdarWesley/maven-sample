@@ -1,6 +1,6 @@
 request:
   method: GET
-  url: /__rootArtifactId__-service/entity1/1
+  url: /__rootArtifactId__-service/entity1?filter=name%3DEntity11&startIndex=0&pageSize=1
   body:
   headers:
     Content-Type: application/json
@@ -13,7 +13,7 @@ response:
     body:
       - path: $.id
         type: by_regex
-        predefined: non_empty
+        predefined: number
       - path: $.name
         type: by_regex
         predefined: non_empty

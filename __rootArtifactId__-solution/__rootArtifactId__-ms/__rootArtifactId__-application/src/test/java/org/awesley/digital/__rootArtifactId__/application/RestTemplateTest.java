@@ -13,8 +13,6 @@ import org.awesley.digital.__rootArtifactId__.service.interfaces.IEntity1Reposit
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -73,7 +71,7 @@ public class RestTemplateTest {
 	@Test
 	@WithMockUser(username="TestAdmin", roles= {"ADMIN"})
 	public void canLoadEntity1() {
-		ResponseEntity<Entity1> entity = testRestTemplate.getForEntity("http://localhost:" + this.port + "/services/entity1/1", Entity1.class);
+		ResponseEntity<Entity1> entity = testRestTemplate.getForEntity("http://localhost:" + this.port + "/__rootArtifactId__-service/entity1/1", Entity1.class);
 		assertEquals(HttpStatus.OK, entity.getStatusCode());
 	}
 }

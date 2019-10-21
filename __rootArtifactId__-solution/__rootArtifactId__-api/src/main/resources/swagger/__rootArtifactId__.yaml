@@ -4,7 +4,7 @@ info:
   description: __rootArtifactId__ REST API definition
   version: 1.0.0
   title: __rootArtifactId__
-basePath: /api
+basePath: /__rootArtifactId__-service
 schemes:
 - http
 

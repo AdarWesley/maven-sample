@@ -3,19 +3,29 @@ package org.awesley.digital.__rootArtifactId__.resources.implementation.delegate
 import org.awesley.digital.__rootArtifactId__.resources.interfaces.IResourceFromModelMapper;
 import org.awesley.digital.__rootArtifactId__.resources.interfaces.IResourceToModelMapper;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.List;
+
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.awesley.digital.__rootArtifactId__.resources.interfaces.Entity1Api;
 import org.awesley.digital.__rootArtifactId__.resources.models.Entity1;
 import org.awesley.digital.__rootArtifactId__.service.interfaces.IEntity1CreateService;
+import org.awesley.digital.__rootArtifactId__.service.interfaces.IEntity1FindService;
 import org.awesley.digital.__rootArtifactId__.service.interfaces.IEntity1GetService;
+import org.awesley.infra.query.QueryExpression;
+import org.awesley.infra.query.parser.QueryExpressionParser;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class Entity1ApiImpl implements Entity1Api {
 
 	@Autowired
 	private IEntity1GetService entity1GetService;
+	
+	@Autowired
+	private IEntity1FindService entity1FindService;
 	
 	@Autowired
 	private IEntity1CreateService entity1CreateService;
@@ -43,7 +53,18 @@ public class Entity1ApiImpl implements Entity1Api {
 
 	@Override
 	public Response findEntity1(String filter, Integer startIndex, Integer pageSize) {
-		return null;
+		try {
+			filter = URLDecoder.decode(filter, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+		
+		QueryExpressionParser expressionParser = new QueryExpressionParser(filter);
+		expressionParser.Parse();
+		QueryExpression expression = expressionParser.getQueryExpression();
+		List<? extends org.awesley.digital.__rootArtifactId__.service.model.Entity1> entity1List = 
+				entity1FindService.find(expression, startIndex, pageSize);
+		return Response.ok(entity1List.get(0)).build();
 	}
 
 	@Override

@@ -4,7 +4,9 @@ import org.awesley.digital.__rootArtifactId__.persistence.implementation.Entity1
 import org.awesley.digital.__rootArtifactId__.persistence.implementation.jpa.entities.JpaEntity1;
 import org.awesley.digital.__rootArtifactId__.service.interfaces.IEntity1Repository;
 import org.awesley.digital.__rootArtifactId__.service.model.Entity1;
+import org.awesley.infra.query.jpa.QueryExpressionToJpaVisitor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -13,6 +15,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @Configuration
 @EnableJpaRepositories(basePackages = { "org.awesley.digital.__rootArtifactId__.persistence.implementation.jpa.repositories" })
 @EntityScan(basePackages = { "org.awesley.digital.__rootArtifactId__.persistence.implementation.jpa.entities" })
+@ComponentScan(basePackageClasses = { QueryExpressionToJpaVisitor.class })
 public class PersistenceConfiguration {
 
 	@Bean

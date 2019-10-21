@@ -13,6 +13,9 @@ import org.awesley.digital.__rootArtifactId__.config.TestConfiguration;
 import org.awesley.digital.__rootArtifactId__.resources.interfaces.Entity1Api;
 import org.awesley.digital.__rootArtifactId__.service.interfaces.IEntity1Repository;
 import org.awesley.digital.__rootArtifactId__.service.model.Entity1;
+import org.awesley.infra.contracttesting.ContractTestHelper;
+import org.awesley.infra.contracttesting.ContractTestsExecutionListener;
+import org.awesley.infra.contracttesting.SupportsTestHelper;
 import org.awesley.infra.security.JwtTokenUtil;
 import org.awesley.infra.security.model.JwtAuthority;
 import org.junit.After;
@@ -24,11 +27,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.TestExecutionListeners.MergeMode;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Any;
 
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
@@ -39,7 +43,8 @@ import io.restassured.specification.RequestSpecification;
 	//, CxfServiceSpringBootApplication.class 
 	// , ContractTestsBase.LocalTransportConfiguration.class 
 }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ContractTestsBase {
+@TestExecutionListeners(value = { ContractTestsExecutionListener.class }, mergeMode = MergeMode.MERGE_WITH_DEFAULTS)
+public class ContractTestsBase implements SupportsTestHelper<ContractTestsBase> {
 
 	// private final static String ENDPOINT_ADDRESS = "local://services";
     @LocalServerPort
@@ -47,12 +52,18 @@ public class ContractTestsBase {
     private Server server;
 	private List<Object> providers;
 	
+	private ContractTestHelper<ContractTestsBase> contractTestHelper;
+	
 	@Autowired
     private Bus bus;
 	
 	@MockBean
 	private IEntity1Repository entity1Repository;
 	
+	public IEntity1Repository getEntity1Repository() {
+		return entity1Repository;
+	}
+
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 	
@@ -87,7 +98,7 @@ public class ContractTestsBase {
 		sf.setAddress(
 				"http://localhost:" + 
 				port + 
-				"/services");
+				"/__rootArtifactId__-service");
 
 		server = sf.create();
 	}
@@ -99,12 +110,12 @@ public class ContractTestsBase {
 	}
 	
 	private void initRestAssuredRequestSpecification() {
-		RestAssured.baseURI = 
-	    		"http://localhost:" + 
-	    		port + 
-	    		"/services";
+//		RestAssured.baseURI = "http://localhost"; 
+//	    RestAssured.port = port;
 	    
-	    testRequestSpecification = RestAssured.given();
+	    testRequestSpecification = RestAssured.given()
+	    		.baseUri("http://localhost")
+	    		.port(port);
 	    
 	    String mockToken = jwtTokenUtil.generateToken("TestUser", Arrays.asList(new JwtAuthority("ROLE_USER")));
 	    testRequestSpecification.header("Authorization", "Bearer " + mockToken);
@@ -144,5 +155,15 @@ public class ContractTestsBase {
 	   server.stop();
 	   server.destroy();
 	   providers = null;
+	}
+
+	@Override
+	public ContractTestHelper<ContractTestsBase> getContractTestHelper() {
+		return this.contractTestHelper;
+	}
+
+	@Override
+	public void setContractTestsHelper(ContractTestHelper<ContractTestsBase> contractTestHelper) {
+		this.contractTestHelper = contractTestHelper;
 	}
 }

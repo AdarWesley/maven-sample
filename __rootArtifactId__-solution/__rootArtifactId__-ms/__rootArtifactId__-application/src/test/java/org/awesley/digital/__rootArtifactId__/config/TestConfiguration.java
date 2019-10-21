@@ -1,13 +1,14 @@
 package org.awesley.digital.__rootArtifactId__.config;
 
+import org.awesley.digital.__rootArtifactId__.Entity1TestHelper;
 import org.awesley.digital.__rootArtifactId__.application.CxfAppConfiguration;
 import org.awesley.digital.__rootArtifactId__.application.JWTAuthorizationRequestInterceptor;
 import org.awesley.digital.__rootArtifactId__.application.security.config.WebSecurityConfig;
-import org.awesley.digital.__rootArtifactId__.config.TestConfiguration.Entity1Test;
 import org.awesley.digital.__rootArtifactId__.resources.configuration.ResourcesConfiguration;
 import org.awesley.digital.__rootArtifactId__.service.configuration.ServicesConfiguration;
 import org.awesley.digital.__rootArtifactId__.service.model.Entity1;
 import org.awesley.infra.applicativecontext.ApplicativeContextConfiguration;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebAutoConfiguration;
@@ -22,6 +23,7 @@ import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Scope;
 
 @SpringBootConfiguration
 @EnableAutoConfiguration(exclude = {
@@ -58,6 +60,7 @@ public class TestConfiguration {
 	}
 	
 	@Bean
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public Entity1 entity1() {
 		return new Entity1Test(); 
 	}
@@ -89,4 +92,9 @@ public class TestConfiguration {
 
 	}
 
+	@Bean("org.awesley.digital.__rootArtifactId__.Entity1TestHelper")
+	@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+	public Entity1TestHelper entity1TestHelper() {
+		return new Entity1TestHelper();
+	}
 }

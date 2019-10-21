@@ -1,0 +1,1 @@
+mvn -Darchetype.properties=..\archetype.properties archetype:create-from-project

@@ -1,15 +1,15 @@
 request:
   method: POST
-  url: /entity1
+  url: /__rootArtifactId__-service/entity1
   body:
-    name: Entity1 Name
+    name: Entity11
   headers:
     Content-Type: application/json
 response:
   status: 201
   body:
-    id: entity_id
-    name: entity_name
+    id: 1
+    name: Entity11
   matchers:
     body:
       - path: $.id
